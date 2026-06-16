@@ -1,19 +1,15 @@
-// Variabel global untuk menyimpan data kalkulasi belanja
 let potonganDiskon = 0;
 let kodePromoAktif = "";
-let biayaOngkir = 0; // Default diatur ke 0 (Gratis Ongkir)
+let biayaOngkir = 0; 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Jalankan fungsi render utama saat halaman dimuat
     renderCheckoutItems();
 
-    // Event Listener untuk Tombol Apply Promo
     const btnApplyPromo = document.getElementById('btn-apply-promo');
     if (btnApplyPromo) {
         btnApplyPromo.addEventListener('click', prosesPromo);
     }
 
-    // Aksi Klik Final Pembayaran
     const btnCheckout = document.querySelector('.btn-checkout');
     if (btnCheckout) {
         btnCheckout.addEventListener('click', function (e) {
@@ -30,9 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// ====================================================
-// FUNGSI UTAMA: MENCETAK BARANG DI HALAMAN CHECKOUT
-// ====================================================
 function renderCheckoutItems() {
     const dataKeranjang = localStorage.getItem('keranjangVPhone');
     
@@ -45,7 +38,6 @@ function renderCheckoutItems() {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
     };
 
-    // TAMBAHAN: Template HTML untuk Tombol Kembali ke Katalog
     const tombolBackHTML = `
         <div style="margin-bottom: 1.5rem;">
             <a href="products.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6c5ce7; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6c5ce7'">
@@ -57,7 +49,6 @@ function renderCheckoutItems() {
     if (dataKeranjang && JSON.parse(dataKeranjang).length > 0) {
         const daftarProduk = JSON.parse(dataKeranjang);
         
-        // Memasukkan tombol back tepat di atas judul Items to Buy
         itemContainer.innerHTML = tombolBackHTML + `<h2><i data-feather="shopping-bag"></i> Items to Buy</h2>`;
         
         let hitungSubtotal = 0;
@@ -83,7 +74,6 @@ function renderCheckoutItems() {
             `;
         });
 
-        // PERBAIKAN FORMULA: Menambahkan komponen biayaOngkir ke hitungan total akhir
         let totalAkhir = (hitungSubtotal + biayaOngkir) - potonganDiskon;
         if (totalAkhir < 0) totalAkhir = 0; 
 
@@ -93,7 +83,6 @@ function renderCheckoutItems() {
         
         if (typeof feather !== 'undefined') feather.replace();
     } else {
-        // Tetap memunculkan tombol back walaupun keranjang belanja kosong
         itemContainer.innerHTML = tombolBackHTML + `
             <h2><i data-feather="shopping-bag"></i> Items to Buy</h2>
             <p style="color: #aaa; text-align: center; padding: 3rem 0; font-size: 1.1rem;">Keranjang belanja Anda kosong.</p>
@@ -105,12 +94,10 @@ function renderCheckoutItems() {
     }
 }
 
-// ====================================================
-// PERBAIKAN BUG: Mengubah variabel pengecekan dari getKeranjang menjadi keranjang
-// ====================================================
+
 function ubahQtyCheckout(id, perubahan) {
     let keranjang = localStorage.getItem('keranjangVPhone');
-    if (!keranjang) return; // FIX: Sebelumnya !getKeranjang (Penyebab eror)
+    if (!keranjang) return; 
     
     keranjang = JSON.parse(keranjang);
     const produk = keranjang.find(item => item.id === id);
