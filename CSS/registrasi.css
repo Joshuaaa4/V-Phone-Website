@@ -10,7 +10,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(/gambar/background.png);
+    background-image: url('../gambar/background.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
