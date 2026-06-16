@@ -1,15 +1,19 @@
+// Variabel global untuk menyimpan data kalkulasi belanja
 let potonganDiskon = 0;
 let kodePromoAktif = "";
+let biayaOngkir = 0; // Default diatur ke 0 (Gratis Ongkir)
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    // Jalankan fungsi render utama saat halaman dimuat
     renderCheckoutItems();
 
+    // Event Listener untuk Tombol Apply Promo
     const btnApplyPromo = document.getElementById('btn-apply-promo');
     if (btnApplyPromo) {
         btnApplyPromo.addEventListener('click', prosesPromo);
     }
 
+    // Aksi Klik Final Pembayaran
     const btnCheckout = document.querySelector('.btn-checkout');
     if (btnCheckout) {
         btnCheckout.addEventListener('click', function (e) {
@@ -26,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
+// ====================================================
+// FUNGSI UTAMA: MENCETAK BARANG DI HALAMAN CHECKOUT
+// ====================================================
 function renderCheckoutItems() {
     const dataKeranjang = localStorage.getItem('keranjangVPhone');
     
@@ -39,10 +45,20 @@ function renderCheckoutItems() {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
     };
 
+    // TAMBAHAN: Template HTML untuk Tombol Kembali ke Katalog
+    const tombolBackHTML = `
+        <div style="margin-bottom: 1.5rem;">
+            <a href="products.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6c5ce7; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6c5ce7'">
+                <i data-feather="arrow-left" style="width: 18px; height: 18px;"></i> Back to Shop
+            </a>
+        </div>
+    `;
+
     if (dataKeranjang && JSON.parse(dataKeranjang).length > 0) {
         const daftarProduk = JSON.parse(dataKeranjang);
         
-        itemContainer.innerHTML = `<h2><i data-feather="shopping-bag"></i> Items to Buy</h2>`;
+        // Memasukkan tombol back tepat di atas judul Items to Buy
+        itemContainer.innerHTML = tombolBackHTML + `<h2><i data-feather="shopping-bag"></i> Items to Buy</h2>`;
         
         let hitungSubtotal = 0;
 
@@ -67,8 +83,8 @@ function renderCheckoutItems() {
             `;
         });
 
-        
-        let totalAkhir = hitungSubtotal - potonganDiskon;
+        // PERBAIKAN FORMULA: Menambahkan komponen biayaOngkir ke hitungan total akhir
+        let totalAkhir = (hitungSubtotal + biayaOngkir) - potonganDiskon;
         if (totalAkhir < 0) totalAkhir = 0; 
 
         if (subtotalElement) subtotalElement.innerText = formatRupiah(hitungSubtotal);
@@ -77,19 +93,24 @@ function renderCheckoutItems() {
         
         if (typeof feather !== 'undefined') feather.replace();
     } else {
-        itemContainer.innerHTML = `
+        // Tetap memunculkan tombol back walaupun keranjang belanja kosong
+        itemContainer.innerHTML = tombolBackHTML + `
             <h2><i data-feather="shopping-bag"></i> Items to Buy</h2>
             <p style="color: #aaa; text-align: center; padding: 3rem 0; font-size: 1.1rem;">Keranjang belanja Anda kosong.</p>
         `;
         if (subtotalElement) subtotalElement.innerText = "Rp 0";
         if (discountElement) discountElement.innerText = "- Rp 0";
         if (totalElement) totalElement.innerText = "Rp 0";
+        if (typeof feather !== 'undefined') feather.replace();
     }
 }
 
+// ====================================================
+// PERBAIKAN BUG: Mengubah variabel pengecekan dari getKeranjang menjadi keranjang
+// ====================================================
 function ubahQtyCheckout(id, perubahan) {
     let keranjang = localStorage.getItem('keranjangVPhone');
-    if (!getKeranjang) return;
+    if (!keranjang) return; // FIX: Sebelumnya !getKeranjang (Penyebab eror)
     
     keranjang = JSON.parse(keranjang);
     const produk = keranjang.find(item => item.id === id);
@@ -110,6 +131,22 @@ function ubahQtyCheckout(id, perubahan) {
     renderCheckoutItems(); 
 }
 
+function ubahMetodeShipping(nilaiOngkir) {
+    biayaOngkir = nilaiOngkir;
+    
+    const labelRegular = document.getElementById('label-shipping-regular');
+    const labelFree = document.getElementById('label-shipping-free');
+
+    if (nilaiOngkir === 0) {
+        if (labelFree) labelFree.style.borderColor = "#6c5ce7";
+        if (labelRegular) labelRegular.style.borderColor = "rgba(255,255,255,0.1)";
+    } else {
+        if (labelRegular) labelRegular.style.borderColor = "#6c5ce7";
+        if (labelFree) labelFree.style.borderColor = "rgba(255,255,255,0.1)";
+    }
+
+    renderCheckoutItems(); 
+}
 
 function prosesPromo() {
     const inputPromo = document.getElementById('promo-code').value.trim().toUpperCase();
@@ -122,12 +159,13 @@ function prosesPromo() {
         return;
     }
 
-    
     const databasePromo = {
         "VPHONEGAMING": 500000,    
         "VPHONELITE": 200000,      
         "PROMOHEMAT": 150000,      
-        "DISKONMEMBER": 300000     
+        "DISKONMEMBER": 300000,
+        "FREEONGKIR": 25000,     
+        "GRATISONGKIR": 25000    
     };
 
     if (databasePromo.hasOwnProperty(inputPromo)) {
@@ -138,9 +176,16 @@ function prosesPromo() {
         msgElement.style.color = "#00b894"; 
         msgElement.innerText = `Kode promo ${inputPromo} berhasil digunakan!`;
         
+        if (inputPromo === "GRATISONGKIR" || inputPromo === "FREEONGKIR") {
+            const radioFree = document.querySelector('input[value="free"]');
+            if (radioFree) {
+                radioFree.checked = true;
+                ubahMetodeShipping(0);
+            }
+        }
+        
         renderCheckoutItems(); 
     } else {
-        
         potonganDiskon = 0;
         kodePromoAktif = "";
         
