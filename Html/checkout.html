@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - V-Phone Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link rel="stylesheet" href="../CSS/checkout.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="navbar-logo"><img src="../gambar/logo.jpg" alt="V-Phone Logo"></a>
+        <div class="navbar-nav">
+            <a href="home.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="promotions.html">Promotions</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="registasi.html">Registration</a>
+        </div>
+        <div class="navbar-ekstra">
+            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        </div>
+    </nav>
+    <main class="checkout-container">
+        <h1 class="checkout-title">Review Your Order</h1>
+        
+        <div class="checkout-layout">
+            <div class="checkout-left">
+                
+                <div class="checkout-left">
+                    <div class="checkout-card">
+                        <h2><i data-feather="shopping-bag"></i> Items to Buy</h2>
+                        
+                    </div>
+                </div>
+
+                <div class="checkout-card">
+                    <h2><i data-feather="credit-card"></i> Payment Method</h2>
+                    <div class="payment-options">
+                        
+                        <label class="payment-box">
+                            <input type="radio" name="payment" checked>
+                            <span class="custom-radio"></span>
+                            <div class="payment-info">
+                                <strong>Bank Transfer (Virtual Account)</strong>
+                                <p>BCA, Mandiri, BNI, BRI</p>
+                            </div>
+                        </label>
+
+                        <label class="payment-box">
+                            <input type="radio" name="payment">
+                            <span class="custom-radio"></span>
+                            <div class="payment-info">
+                                <strong>E-Wallet</strong>
+                                <p>GoPay, OVO, Dana, LinkAja</p>
+                            </div>
+                        </label>
+
+                        <label class="payment-box">
+                            <input type="radio" name="payment">
+                            <span class="custom-radio"></span>
+                            <div class="payment-info">
+                                <strong>Credit / Debit Card</strong>
+                                <p>Visa, MasterCard, JCB</p>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="checkout-right">
+                <div class="checkout-card">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="promo-box" style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem;">
+                        <input type="text" id="promo-code" placeholder="Enter Promo Code" style="flex: 1; background: #0b0b12; border: 1px solid rgba(108, 92, 231, 0.3); padding: 0.6rem; border-radius: 6px; color: white; font-family: 'Poppins', sans-serif; font-size: 0.9rem;">
+                        <button id="btn-apply-promo" style="background: #6c5ce7; color: white; border: none; padding: 0.6rem 1rem; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.2s;">Apply</button>
+                    </div>
+                    <p id="promo-message" style="font-size: 0.85rem; margin-top: -1rem; margin-bottom: 1rem; display: none;"></p>
+
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span>Rp 0</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping Cost</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-line promo-discount">
+                        <span>Promo Discount</span>
+                        <span id="discount-amount">- Rp 0</span> </div>
+                    <hr class="summary-divider">
+                    <div class="summary-line total-line">
+                        <span>Total Payment</span>
+                        <span>Rp 0</span>
+                    </div>
+                    <button class="btn-checkout">Proceed to Payment</button>
+                </div>
+            </div>
+
+    </main>
+    <footer class="footer">
+        <div class="footer-left">
+            <p><img src="../gambar/email.png" alt="Email"/> V-Phonestore@gmail.com</p>
+            <p><img src="../gambar/wa.png" alt="WhatsApp"/> +6281356781234</p>
+        </div>
+        <div class="footer-right">
+            <a href="#"><img src="../gambar/facebook.png" alt="Facebook"/></a>
+            <a href="#"><img src="../gambar/tiktok.png" alt="TikTok"/></a>
+            <a href="#"><img src="../gambar/x.png" alt="X"/></a>
+            <a href="#"><img src="../gambar/ig.png" alt="Instagram"/></a>
+        </div>
+    </footer>
+    <script>
+      feather.replace();
+    </script>
+    <script src="../Java/checkout.js"></script>
+</body>
+</html>
+</body>
+</html>

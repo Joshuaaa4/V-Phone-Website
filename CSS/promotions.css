@@ -1,0 +1,454 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../gambar/background.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center center;
+    background-attachment: fixed; 
+    color: white;
+    background-color: #0b0b12; 
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+/* Navbar */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 7%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.navbar .navbar-logo img{
+    width: 2cm;
+    height: 2cm;
+}
+
+.navbar .navbar-nav a{
+    color: white;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+    color: blue;
+}
+
+.navbar .navbar-nav a::after{
+    content: '';
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid black;
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after{
+    transform: scaleX(0.5);
+}
+
+.navbar .navbar-ekstra a{
+    color: white;
+    margin: 0 0.5rem;
+
+}
+
+.navbar .navbar-ekstra a:hover {
+    color: darkblue;
+}
+
+#hamburger-menu{
+    display: none;
+} 
+
+
+
+.main-content {
+    padding-top: 6rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+    background-image: url(../gambar/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+
+        .sub-title {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .benefits-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .benefit-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-weight: 500;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-description {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+.footer {
+  background-color: #2e1b55;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 7%;
+  flex-wrap: wrap;
+}
+
+.footer-left p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-left p img{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    width: 40px;
+}
+
+.footer-right a {
+  margin: 0 0.3rem;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.footer-right a img{
+    width: 40px;
+}
+
+.footer-right a:hover {
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 1366px){
+    html {
+        font-size: 75%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    #hamburger-menu {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .navbar .navbar-nav {
+        position: fixed;
+        top: 80px; 
+        right: -100%; 
+        background-color: rgba(15, 15, 25, 0.98); 
+        backdrop-filter: blur(10px);
+        width: 280px;
+        height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-left: 1px solid rgba(108, 92, 231, 0.2);
+        transition: right 0.4s ease;
+        z-index: 999;
+    }
+
+    .navbar .navbar-nav.active {
+        right: 0;
+    }
+
+    .navbar .navbar-nav a {
+        color: #ffffff !important;
+        display: block;
+        font-size: 1.6rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        margin: 0; 
+    }
+
+    .navbar .navbar-nav a:hover {
+        color: #6c5ce7 !important;
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 450px){
+    html {
+        font-size: 55%;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .footer-right {
+        align-self: center;
+    }   
+}
+
+.promo-section {
+    padding: 12rem 7% 4rem 7%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.promo-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.promo-header h1 {
+    font-size: 3rem;
+    color: #6c5ce7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.promo-header p {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+
+.countdown-container {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(26, 26, 38, 0.8));
+    border: 1px solid rgba(108, 92, 231, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.countdown-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-box {
+    background: rgba(15, 15, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 80px;
+}
+
+.time-box span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00ff88; 
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); 
+    display: block;
+}
+
+.time-box p {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0;
+}
+
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 12fr);
+    gap: 2rem;
+}
+
+.promo-card.flagship {
+    grid-column: span 2;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('../gambar/background.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #6c5ce7;
+}
+
+.promo-card {
+    background-color: rgba(26, 26, 38, 0.6);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: 15px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+    border-color: #6c5ce7;
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
+}
+
+.promo-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.promo-card.flagship {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(26, 26, 38, 0.85));
+    border: 2px solid #6c5ce7;
+    backdrop-filter: blur(10px);
+}
+
+.promo-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
+}
+
+.discount-text {
+    font-size: 1.4rem;
+    color: #a29bfe;
+    margin-bottom: 1rem;
+}
+
+.discount-text strong {
+    color: #00ff88;
+}
+
+.promo-desc {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.promo-code {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.promo-code span {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: monospace;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.promo-btn {
+    display: inline-block;
+    text-align: center;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.promo-btn:hover {
+    background: linear-gradient(135deg, #5b4cc4, #6c5ce7);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.5);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+    .promo-card.flagship {
+        grid-column: span 1;
+    }
+    .promo-header h1 {
+        font-size: 2.2rem;
+    }
+    .timer {
+        gap: 10px;
+    }
+    .time-box {
+        min-width: 65px;
+        padding: 0.6rem;
+    }
+}
+
+.navbar .navbar-nav a.active {
+    color: #6c5ce7; 
+    font-weight: bold; 
+    border-bottom: 2px solid #6c5ce7; 
+    padding-bottom: 5px;
+}

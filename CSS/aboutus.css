@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(../gambar/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;          
+    background-position: center center;
+    background-attachment: fixed;    
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0b0b12;       
+}
+
+/* === NAVBAR === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 7%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.navbar .navbar-logo img {
+    width: 2cm;
+    height: 2cm;
+}
+
+.navbar .navbar-nav a {
+    color: white;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.navbar .navbar-nav a:hover {
+    color: blue;
+}
+
+.navbar .navbar-nav a::after {
+    content: '';
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid black;
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.5);
+}
+
+.navbar .navbar-ekstra a {
+    color: white;
+    margin: 0 0.5rem;
+}
+
+.navbar .navbar-ekstra a:hover {
+    color: darkblue;
+}
+
+#hamburger-menu {
+    display: none;
+}
+
+/* === MAIN ABOUT US CONTENT === */
+.about-section {
+    padding: 14rem 7% 6rem 7%; 
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1; 
+}
+
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.25);
+    border: 2px solid rgba(108, 92, 231, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.03);
+}
+
+.about-content {
+    flex: 1.2;
+}
+
+.about-content span {
+    color: #6c5ce7;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.about-content h2 {
+    font-size: 2.8rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.about-content p {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+
+.vision-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.vision-box, .mission-box {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(26, 26, 38, 0.75));
+    border: 1px solid rgba(108, 92, 231, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 3rem 2.5rem;
+    transition: all 0.4s ease;
+}
+
+.vision-box:hover, .mission-box:hover {
+    transform: translateY(-5px);
+    border-color: #6c5ce7;
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.15);
+}
+
+.icon-wrap {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.vision-box h3, .mission-box h3 {
+    font-size: 2rem;
+    color: #a29bfe;
+    margin-bottom: 1.2rem;
+}
+
+.vision-box p, .mission-box ul {
+    color: #ddd;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.mission-box ul {
+    padding-left: 1.2rem;
+    list-style: none; 
+}
+
+.mission-box ul li {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+/* === FOOTER === */
+.footer {
+    background-color: #2e1b55;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 7%;
+    flex-wrap: wrap;
+}
+
+.footer-left p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-left p img {
+    width: 40px;
+}
+
+.footer-right a {
+    margin: 0 0.3rem;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.footer-right a img {
+    width: 40px;
+}
+
+.footer-right a:hover {
+    transform: scale(1.1);
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 1366px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    #hamburger-menu {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .navbar .navbar-nav {
+        position: fixed;
+        top: 80px; 
+        right: -100%; 
+        background-color: rgba(15, 15, 25, 0.98); 
+        backdrop-filter: blur(10px);
+        width: 280px;
+        height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-left: 1px solid rgba(108, 92, 231, 0.2);
+        transition: right 0.4s ease;
+        z-index: 999;
+    }
+
+    .navbar .navbar-nav.active {
+        right: 0;
+    }
+
+    .navbar .navbar-nav a {
+        color: #ffffff !important;
+        display: block;
+        font-size: 1.6rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        margin: 0; 
+    }
+
+    .navbar .navbar-nav a:hover {
+        color: #6c5ce7 !important;
+        padding-left: 10px;
+    }
+
+    .about-section {
+        padding-top: 12rem;
+    }
+    
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .about-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .vision-mission-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 55%;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .footer-right {
+        align-self: center;
+    }   
+}
+
+.navbar .navbar-nav a.active {
+    color: #6c5ce7; /* Warna berubah jadi ungu */
+    font-weight: bold; /* Teks jadi lebih tebal */
+    border-bottom: 2px solid #6c5ce7; /* Opsional: tambah garis bawah tipis */
+    padding-bottom: 5px;
+}
